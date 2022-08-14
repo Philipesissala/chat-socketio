@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Chat</h1>
-    <div class="chat"></div>
+    <div id="chat"></div>
     <br />
     <input
       type="text"
@@ -24,6 +24,14 @@
     const socket = io("http://localhost:3000");
     socket.on("disconnect", () => {
       console.log("Disconected");
+    });
+
+    socket.on("showMessage", (data) => {
+      const chat = document.getElementById("chat");
+      console.log(chat);
+      const p = document.createElement("p");
+      p.innerHTML = data.username + ": " + data.msg;
+      chat.append(p);
     });
 
     function enviar() {

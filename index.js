@@ -7,7 +7,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => console.log(`User ${socket.id} disconnected`));
 
   socket.on("message", (data) => {
-    console.log(data);
+    io.emit("showMessage", data);
   });
 });
 
